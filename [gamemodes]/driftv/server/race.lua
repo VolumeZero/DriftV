@@ -27,13 +27,6 @@ function SubmitRaceScore(source, race, points, vehicle, time)
             if v.points < points then
                 added = true
                 table.insert(races[race].scores, k, {name = GetPlayerName(source), points = points, veh = vehicle, time = time})
-
-                TriggerClientEvent('chat:addMessage', -1, {
-                    color = {252, 186, 3},
-                    multiline = true,
-                    args = {"Drift", "The player "..GetPlayerName(source).." just took the "..k.." place at ".. race .." !"}
-                })
-                
                 infoToSendIfNewScore = {
                     name = v.name,
                     points = points,
@@ -62,6 +55,12 @@ function SubmitRaceScore(source, race, points, vehicle, time)
         --print(cachedNames[GetPlayerName(source)], infoToSendIfNewScore.points)
         if added and cachedNames[GetPlayerName(source)] <= infoToSendIfNewScore.points then
             SendDriftAttackScore(source, infoToSendIfNewScore.name, infoToSendIfNewScore.points, infoToSendIfNewScore.oldPoints, infoToSendIfNewScore.place, infoToSendIfNewScore.race, infoToSendIfNewScore.vehicle)
+            TriggerClientEvent('chat:addMessage', -1, {
+                color = {252, 186, 3},
+                multiline = true,
+                args = {"Drift Trials:", "~b~"..GetPlayerName(source).."~s~ just took ~r~POSITION~s~: #"..infoToSendIfNewScore.place.."~s~ on ~g~".. race .."~s~! Score: ~r~" ..infoToSendIfNewScore.points.."~s~ points!"}
+            })
+            
         end
 
 
@@ -95,12 +94,6 @@ end)
 
 RegisterSecuredNetEvent(Events.raceEnd, function(race, points, vehicle, time)
     SubmitRaceScore(source, race, points, vehicle, time)
-
-    TriggerClientEvent('chat:addMessage', -1, {
-        color = {3, 223, 252},
-        multiline = true,
-        args = {"Drift", "The player "..GetPlayerName(source).." finished the race "..race.." with "..GroupDigits(points).." points in a "..vehicle.." !"}
-    })
 end)
 
 RegisterSecuredNetEvent(Events.raceData, function()
