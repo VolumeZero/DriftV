@@ -234,7 +234,7 @@ end)
 RegisterSecuredNetEvent(Events.reqSync, function()
     local players = {}
     for k,v in pairs(player) do
-        table.insert(players, {name = GetPlayerName(k), exp = v.exp, servID = k, ping = GetPlayerPing(k), crew = v.crew})
+        table.insert(players, {name = GetPlayerName(k), exp = v.exp, servID = k, ping = GetPlayerPing(k), crew = v.crew, driftPoint = v.driftPoint})
     end
 
     TriggerClientEvent(Events.getSync, source, players)
