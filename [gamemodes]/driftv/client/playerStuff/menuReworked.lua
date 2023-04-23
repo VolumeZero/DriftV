@@ -116,9 +116,16 @@ function OpenMainMenu()
         RageUI.Visible(main, true)
         StartLoopAnimation()
 
-        Citizen.CreateThread(function()
+            Citizen.CreateThread(function()
             while open do
-
+            DisableControlAction(0,14,true)
+            DisableControlAction(0,15,true)
+            DisableControlAction(0,16,true)
+            DisableControlAction(0,17,true)
+            DisableControlAction(0,20,true)
+            DisableControlAction(0,24,true)
+            DisableControlAction(0,80,true)
+            DisableControlAction(0,140,true)
                 RageUI.IsVisible(main, function()
                     if not p:IsInGarage() then
                         RageUI.Button(garageTag, "Return to the lobby", {RightLabel = ""}, true, {
