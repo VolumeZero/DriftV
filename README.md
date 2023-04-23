@@ -5,12 +5,13 @@ Drift base for FiveM
 Fork by Gavin1593/VolumeZero
 
 Changes made:
- Global drift point scoreboard!
- Sell Vehicles for their orignal price!
- Better controller support in menus!
- Better and easier to track ui!
- Custom pay exports for use in esx scripts! (My server has a full casino using the money system in driftv for example)
- Less chat spam from Drift Trials!
+
+ Global drift point scoreboard,
+ Sell Vehicles for their orignal price,
+ Better controller support in menus,
+ Better and easier to track ui,
+ Custom pay exports for use in esx scripts, (My server has a full casino using the money system in driftv for example)
+ Less chat spam from Drift Trials,
 
 
 
