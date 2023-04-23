@@ -14,6 +14,7 @@ Events = {
     busted = uuid() .."drift:GotBusted",
     refreshCars = uuid() .."drift:UpdateCars",
     buyVeh = uuid() .."drift:BuyVehicle",
+    sellVeh = uuid() .."drift:SellVehicle",
     setPassive = uuid() .."dirft:SetInPassive",
     reqSync = uuid() .."drift:RequestSync",
     getSync = uuid() .."drift:SyncPlayer",
