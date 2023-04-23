@@ -181,17 +181,6 @@ function OpenVehShopMenu(GoBackToLobby)
                                 if backToLobby then
                                     EnableLobby()
                                 end
-                                onActive = function()
-                                    if previewVeh.model ~= v.model then
-                                        DeleteEntity(previewVeh.entity)
-                                        local veh = entity:CreateVehicleLocal(v.model, previewCoords.xyz, previewCoords.w)
-                                        SetVehicleOnGroundProperly(veh:getEntityId())
-                                        FreezeEntityPosition(veh:getEntityId(), true)
-                                        SetVehicleDirtLevel(veh:getEntityId(), 0.0)
-                                        previewVeh.entity = veh:getEntityId()
-                                        previewVeh.model = v.model
-                                    end
-                                end
                             end,
                         }, sell);
                     end
