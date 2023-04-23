@@ -68,8 +68,9 @@ local previewVeh = {
 local previewCoords = vector4(-44.621406555176, -1096.7896728516, 26.422359466553, 118.64887237549)
 local vehShopCoords = vector3(-43.162559509277, -1100.0212402344, 26.422359466553)
 local camPos = vector3(-45.922637939453, -1102.5314941406, 27.422361373901)
-local main = RageUI.CreateMenu("DriftV", "~b~Drift vehicles shop")
-local sub =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift vehicles shop")
+local main = RageUI.CreateMenu("FxDrift", "~b~Drift vehicles shop")
+local sub =  RageUI.CreateSubMenu(main, "FxDrift", "~b~Drift vehicles shop")
+local sell =  RageUI.CreateSubMenu(main, "FxDrift", "~b~Drift vehicles shop")
 main.Closed = function()
     open = false
     RageUI.CloseAll()
@@ -108,8 +109,17 @@ function OpenVehShopMenu(GoBackToLobby)
 
          Citizen.CreateThread(function()
             while open do
+                DisableControlAction(0,14,true)
+                DisableControlAction(0,15,true)
+                DisableControlAction(0,16,true)
+                DisableControlAction(0,17,true)
+                DisableControlAction(0,20,true)
+                DisableControlAction(0,24,true)
+                DisableControlAction(0,80,true)
+                DisableControlAction(0,140,true)
                 RageUI.IsVisible(main, function()
 		            RageUI.Button("Money: ~g~$"..GroupDigits(tostring(p:GetMoney())) .. "", nil, {}, true, {});
+                    RageUI.Button("Sell", nil, {RightLabel = ">"}, true, {}, sell);
                     for k,v in pairs(vehs) do
                         RageUI.Button(v.label, nil, {RightLabel = ">"}, true, {
                             onSelected = function()
@@ -153,6 +163,37 @@ function OpenVehShopMenu(GoBackToLobby)
                                 end
                             end
                         }, sub);
+                    end
+                end)
+
+                RageUI.IsVisible(sell, function()
+                    for k,v in pairs(p:GetCars()) do
+                        RageUI.Button(v.label, "Sell Selected Vehicle!", {RightLabel = "~g~"..(v.price).."~s~$"}, true, {
+                            onSelected = function()
+                                open = false
+                                RageUI.CloseAll()
+                                RageUI.Visible(main, false)
+                                DeleteEntity(previewVeh.entity)
+                                cam.render("SHOP", false, false, 0)
+                                cam.delete("SHOP")
+                                TriggerServerEvent(Events.sellVeh, v.price, v.label, v.model)
+                                ShowHelpNotification("Your vehicle has been sold!", true)
+                                if backToLobby then
+                                    EnableLobby()
+                                end
+                                onActive = function()
+                                    if previewVeh.model ~= v.model then
+                                        DeleteEntity(previewVeh.entity)
+                                        local veh = entity:CreateVehicleLocal(v.model, previewCoords.xyz, previewCoords.w)
+                                        SetVehicleOnGroundProperly(veh:getEntityId())
+                                        FreezeEntityPosition(veh:getEntityId(), true)
+                                        SetVehicleDirtLevel(veh:getEntityId(), 0.0)
+                                        previewVeh.entity = veh:getEntityId()
+                                        previewVeh.model = v.model
+                                    end
+                                end
+                            end,
+                        }, sell);
                     end
                 end)
 

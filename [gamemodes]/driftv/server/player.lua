@@ -203,7 +203,8 @@ RegisterSecuredNetEvent(Events.setDriftPoint, function(point)
     local source = source
     player[source].driftPoint = player[source].driftPoint + point
     player[source].money = math.floor(player[source].money + point / 200)
-    TriggerClientEvent("FeedM:showNotification", source, "+ ~g~"..tostring(math.floor(point / 200)).."~s~$", 2000, "success")
+    RefreshPlayerData(source)
+    TriggerClientEvent("FeedM:showNotification", source, "~g~Drift Bonus~s~: + ~g~"..GroupDigits(tostring(math.floor(point / 200))).."~s~$", 2000, "success")
     AddPointsToCrew(source, point)
 
     RefreshPlayerData(source)
@@ -214,8 +215,10 @@ end)
 RegisterSecuredNetEvent(Events.addMoney, function(money)
     local source = source
     player[source].money = math.floor(player[source].money + money)
-    TriggerClientEvent("FeedM:showNotification", source, "+ ~g~"..tostring(math.floor(money)).."~s~$", 2000, "success")
+    TriggerClientEvent("FeedM:showNotification", source, "Money: ~g~"..GroupDigits(player[source].money).."~s~$", 4000, "success")
+    TriggerClientEvent("FeedM:showNotification", source, "+ ~g~"..GroupDigits(tostring(math.floor(money))).."~s~$", 2000, "success")
 end)
+
 
 RegisterSecuredNetEvent(Events.SetExp, function(point)
     local source = source
@@ -255,13 +258,25 @@ RegisterSecuredNetEvent(Events.buyVeh, function(price, label, model)
 
     if price <= player[source].money and price > 49000 then
         player[source].money = player[source].money - price
-        table.insert(player[source].cars, {label = label, model = model, props = {}})
+        table.insert(player[source].cars, {price = price, label = label, model = model, props = {}})
+        TriggerClientEvent("FeedM:showNotification", source, "Money: ~g~"..GroupDigits(player[source].money).."~s~$", 4000, "success")
+        TriggerClientEvent("FeedM:showNotification", source, "- ~r~"..GroupDigits(price).."~s~$", 2000, "success")
         TriggerClientEvent("FeedM:showNotification", source, "New vehicle added to your garage !", 5000, "success")
-
         RefreshPlayerData(source)
         player[source].needSave = true
     end
 end)
+
+RegisterSecuredNetEvent(Events.sellVeh, function(price, label, model)
+    player[source].money = player[source].money + price
+    table.remove(player[source].cars, nil)
+    TriggerClientEvent("FeedM:showNotification", source, "Money: ~g~"..GroupDigits(player[source].money).."~s~$", 4000, "success")
+    TriggerClientEvent("FeedM:showNotification", source, "+ ~g~"..GroupDigits(price).."~s~$", 2000, "success")
+    TriggerClientEvent("FeedM:showNotification", source, "Vehicle ~r~sold~s~!", 5000, "success")
+    RefreshPlayerData(source)
+    player[source].needSave = true
+end)
+
 
 RegisterSecuredNetEvent(Events.refreshCars, function(cars)
     player[source].cars = cars
@@ -275,7 +290,34 @@ end)
 
 RegisterSecuredNetEvent(Events.pay, function(price)
     player[source].money = player[source].money - price
-    TriggerClientEvent("FeedM:showNotification", source, "- ~r~"..tostring(math.floor(price)).."~s~$", 2000, "success")
+    TriggerClientEvent("FeedM:showNotification", source, "Money: ~g~"..GroupDigits(player[source].money).."~s~$", 4000, "success")
+    TriggerClientEvent("FeedM:showNotification", source, "- ~r~"..GroupDigits(price).."~s~$", 2000, "success")
     player[source].needSave = true
     RefreshPlayerData(source)
 end)
+
+--Custom exports
+
+exports('addPlayerMoney', function(source, money)
+    player[source].money = math.floor(player[source].money + money)
+    RefreshPlayerData(source)
+    TriggerClientEvent("FeedM:showNotification", source, "Money: ~g~"..GroupDigits(player[source].money).."~s~$", 4000, "success")
+    TriggerClientEvent('FeedM:showNotification', source, "+ ~g~"..GroupDigits(tostring(math.floor(money))).."~s~$", 2000, "success")
+    player[source].needSave = true
+    RefreshPlayerData(source)
+end)
+  
+exports('payPlayerMoney', function(source, price)
+    player[source].money = player[source].money - price
+    RefreshPlayerData(source)
+    TriggerClientEvent("FeedM:showNotification", source, "Money: ~g~"..GroupDigits(player[source].money).."~s~$", 4000, "success")
+    TriggerClientEvent("FeedM:showNotification", source, "- ~r~"..GroupDigits(tostring(math.floor(price))).."~s~$", 2000, "success")
+    player[source].needSave = true
+    RefreshPlayerData(source)
+end)
+
+exports('getPlayerMoney', function(source)
+    return player[source].money
+end)
+
+

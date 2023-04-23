@@ -167,7 +167,7 @@ local customs = {
 
 local colors = {
     {
-        label = "black",
+        label = "Black",
         price = 5000,
         colors = {
 			{ index = 0, label = ('black')},
@@ -183,7 +183,7 @@ local colors = {
         }
     },
     {
-        label = "white",
+        label = "White",
         price = 5000,
         colors = {
 			{ index = 106, label = ('vanilla')},
@@ -199,7 +199,7 @@ local colors = {
         }
     },
     {
-        label = "grey",
+        label = "Grey",
         price = 5000,
         colors = {
 			{ index = 4, label = ('silver')},
@@ -227,7 +227,7 @@ local colors = {
         }
     },
     {
-        label = "red",
+        label = "Red",
         price = 5000,
         colors = {
 			{ index = 27, label = ('red')},
@@ -249,7 +249,7 @@ local colors = {
         }
     },
     {
-        label = "pink",
+        label = "Pink",
         price = 6000,
         colors = {
 			{ index = 135, label = ('electricpink')},
@@ -258,7 +258,7 @@ local colors = {
         }
     },
     {
-        label = "blue",
+        label = "Blue",
         price = 5000,
         colors = {
 			{ index = 54, label = ('topaz')},
@@ -293,7 +293,7 @@ local colors = {
         }
     },
     {
-        label = "yellow",
+        label = "Yellow",
         price = 6000,
         colors = {
 			{ index = 42, label = ('yellow')},
@@ -304,7 +304,7 @@ local colors = {
         }
     },
     {
-        label = "green",
+        label = "Green",
         price = 5000,
         colors = {
 			{ index = 49, label = ('met_dark_green')},
@@ -327,7 +327,7 @@ local colors = {
         }
     },
     {
-        label = "orange",
+        label = "Orange",
         price = 7000,
         colors = {
 			{ index = 36, label = ('tangerine')},
@@ -340,7 +340,7 @@ local colors = {
         }
     },
     {
-        label = "brown",
+        label = "Brown",
         price = 5000,
         colors = {
 			{ index = 45, label = ('copper')},
@@ -371,7 +371,7 @@ local colors = {
         }
     },
     {
-        label = "purple",
+        label = "Purple",
         price = 7000,
         colors = {
 			{ index = 71, label = ('indigo')},
@@ -385,7 +385,7 @@ local colors = {
         }
     },
     {
-        label = "chrome",
+        label = "Chrome",
         price = 15000,
         colors = {
 			{ index = 117, label = ('brushedchrome')},
@@ -395,7 +395,7 @@ local colors = {
         }
     },
     {
-        label = "gold",
+        label = "Gold",
         price = 30000,
         colors = {
 			{ index = 37, label = ('gold')},
@@ -442,6 +442,7 @@ local allWheelsType = {
 }
 
 
+
 function RefreshCustomVehicleValues(veh)
     SetVehicleModKit(veh, 0)
     for k,v in pairs(customs) do
@@ -484,18 +485,19 @@ local index = {
 }
 local selectedWheelType = 0
 local selectedWheelLabel = ""
-local tubroPrice = 350000
+local tubroPrice = 250000
 local loadedVeh = nil
 local loadedProps = {}
-local main = RageUI.CreateMenu("DriftV", "~b~Drift customs shop")
-local sub =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift customs shop")
-local wheelsType =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift customs shop")
-local wheelsTypeSub =  RageUI.CreateSubMenu(wheelsType, "DriftV", "~b~Drift customs shop")
-local colours =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift customs shop")
-local coloursSub =  RageUI.CreateSubMenu(colours, "DriftV", "~b~Drift customs shop")
-local livery =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift customs shop")
-local extra =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift customs shop")
-local sub2 =  RageUI.CreateSubMenu(sub, "DriftV", "~b~Drift customs shop")
+local main = RageUI.CreateMenu("FxDrift", "~b~Drift customs shop")
+local sub =  RageUI.CreateSubMenu(main, "FxDrift", "~b~Drift customs shop")
+local wheelsType =  RageUI.CreateSubMenu(main, "FxDrift", "~b~Drift customs shop")
+local wheelsTypeSub =  RageUI.CreateSubMenu(wheelsType, "FxDrift", "~b~Drift customs shop")
+local tintLevel =  RageUI.CreateSubMenu(main, "FxDrift", "~b~Drift customs shop") --CUSTOM
+local colours =  RageUI.CreateSubMenu(main, "FxDrift", "~b~Drift customs shop")
+local coloursSub =  RageUI.CreateSubMenu(colours, "FxDrift", "~b~Drift customs shop")
+local livery =  RageUI.CreateSubMenu(main, "FxDrift", "~b~Drift customs shop")
+local extra =  RageUI.CreateSubMenu(main, "FxDrift", "~b~Drift customs shop")
+local sub2 =  RageUI.CreateSubMenu(sub, "FxDrift", "~b~Drift customs shop")
 main.Closed = function()
     open = false
     RageUI.CloseAll()
@@ -515,6 +517,9 @@ coloursSub.Closed = function()
     SetVehProps(loadedVeh, loadedProps)
 end
 livery.Closed = function()
+    SetVehProps(loadedVeh, loadedProps)
+end
+tintLevel.Closed = function()
     SetVehProps(loadedVeh, loadedProps)
 end
 extra.Closed = function()
@@ -552,7 +557,14 @@ function OpenCustomMenu(veh, name)
 
         Citizen.CreateThread(function()
             while open do
-
+                DisableControlAction(0,14,true)
+                DisableControlAction(0,15,true)
+                DisableControlAction(0,16,true)
+                DisableControlAction(0,17,true)
+                DisableControlAction(0,20,true)
+                DisableControlAction(0,24,true)
+                DisableControlAction(0,80,true)
+                DisableControlAction(0,140,true)
                 DrawLightWithRangeAndShadow(vCoords.x, vCoords.y, vCoords.z + 5, 255, 255, 255, 8.0, 50.0, 5.0)
                 DrawMarker(0, vCoords.x, vCoords.y, vCoords.z + 1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6, 0.6, 0.6, 255, 255, 255, 255, 1, 0, 2, 0, nil, nil, 0)
 
@@ -567,8 +579,9 @@ function OpenCustomMenu(veh, name)
                             end,
                         }, sub);
                     end
-                    RageUI.Button("wheels", nil, {RightLabel = ">"}, true, {}, wheelsType);
+                    RageUI.Button("Wheels", nil, {RightLabel = ">"}, true, {}, wheelsType);
                     RageUI.Button("Colours", nil, {RightLabel = ">"}, true, {}, colours);
+                    RageUI.Button("Tint Level", nil, {RightLabel = ">"}, true, {}, tintLevel); --CUSTOM
                     RageUI.Button("Livery", nil, {RightLabel = ">"}, true, {}, livery);
                     RageUI.Button("Extra mods", nil, {RightLabel = ">"}, true, {}, extra);
                 end)
@@ -655,6 +668,36 @@ function OpenCustomMenu(veh, name)
                     end
                 end)
 
+                RageUI.IsVisible(tintLevel, function()
+                    RageUI.Button("Tint #0", nil, {}, true, {
+                        onSelected = function()
+                            SetVehProps(veh, {windowTint = 60})
+                            local props = GetVehProps(veh)
+                            p:SetCarProps(name, props)
+                            loadedProps = GetVehProps(veh)
+                            PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                        end,
+                        onActive = function()
+                            SetVehProps(veh, {windowTint = 60})
+                        end
+                    });
+                    for i = 0, 4 do
+                        RageUI.Button("Tint #"..i + 1, "Apply Tint to your windows!", {}, true, {
+                            onSelected = function()
+                                SetVehProps(veh, {windowTint = i})
+                                local props = GetVehProps(veh)
+                                p:SetCarProps(name, props)
+                                loadedProps = GetVehProps(veh)
+                                PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                            end,
+                            onActive = function()
+                                SetVehProps(veh, {windowTint = i})
+                            end
+                        });
+                    end
+                end)
+
+
                 RageUI.IsVisible(livery, function()
                     RageUI.Button("Livery #0", nil, {}, true, {
                         onSelected = function()
@@ -669,7 +712,7 @@ function OpenCustomMenu(veh, name)
                         end
                     });
                     for i = 0, 20 do
-                        RageUI.Button("Livery #"..i + 1, "Some livery can not exist on vehicle", {}, true, {
+                        RageUI.Button("Livery #"..i + 1, "Some livery's do not exist on vehicles", {}, true, {
                             onSelected = function()
                                 SetVehProps(veh, {modLivery = i})
                                 local props = GetVehProps(veh)
@@ -738,7 +781,6 @@ function OpenCustomMenu(veh, name)
                         });
                     end
                 end)
-
                 RageUI.IsVisible(sub, function()
                     for k,v in pairs(customs[selectedMod].customs) do
                         RageUI.Button(v.label, nil, {RightLabel = "[x~b~"..v.max.."~s~] >"}, true, {
