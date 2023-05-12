@@ -13,7 +13,7 @@ Changes made:
  Custom pay exports for use in esx scripts.
  Less chat spam from Drift Trials.
 
-
+Most of my changes are tested are on my custom server with the "lobby" completely removed. So some things like controller support might not work correctly within the lobby!!!
 
 This gamemode has been designed to work with OneSync infinity. It will work without it, but performance can be worse.
 
