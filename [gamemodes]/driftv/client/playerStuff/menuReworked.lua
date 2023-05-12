@@ -484,7 +484,14 @@ Keys.Register('F1', 'F1', 'Open main menu', function()
     OpenMainMenu()
 end)
 
-
+Citizen.CreateThread(function() --Controller support for opening main menu 
+    while true do
+        if not open and IsControlPressed(1,27) and IsControlJustPressed(1,193) then --Up on dpad + X (xbox)
+            OpenMainMenu()
+        end
+        Wait(1)
+    end
+end)
 
 Citizen.CreateThread(function()
     while not loaded do Wait(1) end

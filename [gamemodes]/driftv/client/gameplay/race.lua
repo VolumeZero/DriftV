@@ -403,8 +403,8 @@ function StartRace(data, raceKey)
                 raceStopped = true
             end
 
-            ShowHelpNotification("Press ~INPUT_CELLPHONE_CANCEL~ to cancel the drift race")
-            if IsControlJustReleased(0, 177) then
+            ShowHelpNotification("Press ~INPUT_PHONE~ to cancel the drift race")
+            if IsControlJustPressed(1, 27) then
                 raceStopped = true
 
                 SetPedCoordsKeepVehicle(p:ped(), data.start.xyz)
