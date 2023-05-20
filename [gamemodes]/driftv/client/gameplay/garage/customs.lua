@@ -98,8 +98,8 @@ local customs = {
                 bonePos = vector3(0.0, 0.0, 0.0),
                 max = 1,
                 installed = 0,
-                price = 7500,
-                pricePad = 550,
+                price = 1000,
+                pricePad = 525,
             },
             {
                 label = "Frame",
@@ -108,8 +108,8 @@ local customs = {
                 bonePos = vector3(0.0, 0.0, 0.0),
                 max = 1,
                 installed = 0,
-                price = 7500,
-                pricePad = 550,
+                price = 5000,
+                pricePad = 500,
             },
             {
                 label = "Grille",
@@ -118,8 +118,8 @@ local customs = {
                 bonePos = vector3(0.0, 0.0, 0.0),
                 max = 1,
                 installed = 0,
-                price = 7500,
-                pricePad = 550,
+                price = 2500,
+                pricePad = 500,
             },
             {
                 label = "Hood",
@@ -129,7 +129,7 @@ local customs = {
                 max = 1,
                 installed = 0,
                 price = 7500,
-                pricePad = 550,
+                pricePad = 500,
             },
             {
                 label = "Fender",
@@ -139,7 +139,7 @@ local customs = {
                 max = 1,
                 installed = 0,
                 price = 7500,
-                pricePad = 550,
+                pricePad = 500,
             },
             {
                 label = "Right Fender",
@@ -149,7 +149,7 @@ local customs = {
                 max = 1,
                 installed = 0,
                 price = 7500,
-                pricePad = 550,
+                pricePad = 500,
             },
             {
                 label = "Roof",
@@ -158,9 +158,131 @@ local customs = {
                 bonePos = vector3(0.0, 0.0, 0.0),
                 max = 1,
                 installed = 0,
-                price = 7500,
+                price = 5000,
+                pricePad = 500,
+            },
+            {
+                label = "Plate-A",
+                mod = 25,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 2500,
+                pricePad = 250,
+            },
+            {
+                label = "Plate-B",
+                mod = 26,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 2500,
+                pricePad = 250,
+            },
+            {
+                label = "Misc-1",
+                mod = 27,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 5000,
                 pricePad = 550,
             },
+            {
+                label = "Misc-2",
+                mod = 28,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 5000,
+                pricePad = 550,
+            },
+            {
+                label = "Misc-3",
+                mod = 29,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 5000,
+                pricePad = 550,
+            },
+            {
+                label = "Misc-4",
+                mod = 30,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 5000,
+                pricePad = 550,
+            },
+            {
+                label = "Ornament",
+                mod = 31,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 5000,
+                pricePad = 550,
+            },
+            {
+                label = "Seats",
+                mod = 32,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 7000,
+                pricePad = 500,
+            },
+            {
+                label = "Steering wheels",
+                mod = 33,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 4500,
+                pricePad = 500,
+            },
+            {
+                label = "Shift Knobs",
+                mod = 34,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 2500,
+                pricePad = 500,
+            },
+            {
+                label = "Plaque",
+                mod = 35,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 2500,
+                pricePad = 500,
+            },
+            {
+                label = "Mirrors",
+                mod = 46,
+                bone = "chassis",
+                bonePos = vector3(0.0, 0.0, 0.0),
+                max = 1,
+                installed = 0,
+                price = 2500,
+                pricePad = 500,
+            },
+            
+            
         },
     },
 }
@@ -485,7 +607,10 @@ local index = {
 }
 local selectedWheelType = 0
 local selectedWheelLabel = ""
-local tubroPrice = 350000
+local tubroPrice = 250000
+local miscPrice = 2000
+local tintPrice = 500
+local wrapPrice = 750
 local loadedVeh = nil
 local loadedProps = {}
 local main = RageUI.CreateMenu("DriftV", "~b~Drift customs shop")
@@ -493,6 +618,9 @@ local sub =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift customs shop")
 local wheelsType =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift customs shop")
 local wheelsTypeSub =  RageUI.CreateSubMenu(wheelsType, "DriftV", "~b~Drift customs shop")
 local tintLevel =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift customs shop") --CUSTOM
+local light =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift customs shop") --CUSTOM
+local lightsub1 =  RageUI.CreateSubMenu(light, "DriftV", "~b~Drift customs shop")
+local lightsub2 =  RageUI.CreateSubMenu(light, "DriftV", "~b~Drift customs shop") --CUSTOM
 local colours =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift customs shop")
 local coloursSub =  RageUI.CreateSubMenu(colours, "DriftV", "~b~Drift customs shop")
 local livery =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift customs shop")
@@ -517,6 +645,12 @@ coloursSub.Closed = function()
     SetVehProps(loadedVeh, loadedProps)
 end
 livery.Closed = function()
+    SetVehProps(loadedVeh, loadedProps)
+end
+lightsub1.Closed = function()
+    SetVehProps(loadedVeh, loadedProps)
+end
+lightsub2.Closed = function()
     SetVehProps(loadedVeh, loadedProps)
 end
 tintLevel.Closed = function()
@@ -555,6 +689,13 @@ function OpenCustomMenu(veh, name)
         loadedProps = GetVehProps(veh)
         local vCoords = GetEntityCoords(veh)
 
+        local baseX = 0.9 
+        local baseY = 0.2
+        local baseWidth = 0.15 
+        local baseHeight = 0.03
+
+
+
         Citizen.CreateThread(function()
             while open do
                 DisableControlAction(0,14,true)
@@ -565,8 +706,14 @@ function OpenCustomMenu(veh, name)
                 DisableControlAction(0,24,true)
                 DisableControlAction(0,80,true)
                 DisableControlAction(0,140,true)
-                DrawLightWithRangeAndShadow(vCoords.x, vCoords.y, vCoords.z + 5, 255, 255, 255, 8.0, 50.0, 5.0)
+                --DrawLightWithRangeAndShadow(vCoords.x, vCoords.y, vCoords.z + 5, 255, 255, 255, 8.0, 50.0, 5.0)
                 DrawMarker(0, vCoords.x, vCoords.y, vCoords.z + 1.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6, 0.6, 0.6, 255, 255, 255, 255, 1, 0, 2, 0, nil, nil, 0)
+
+                DrawRect(baseX, baseY - 0.058, baseWidth, baseHeight - 0.02, 255, 103, 92, 255) -- Liseret
+                DrawRect(baseX, baseY - 0.043, baseWidth, baseHeight, 255, 255, 255, 255) -- Bannière
+                DrawTexts(baseX + 0.000, baseY - (0.043) - 0.013, GroupDigits(tostring(p:GetMoney())), false, 0.35, {0, 0, 0, 255}, 2, 0)
+                DrawTexts(baseX - 0.068, baseY - (0.043) - 0.013, "Money:", false, 0.35, {0, 0, 0, 255}, 2, 0)
+
 
                 RageUI.IsVisible(main, function()
                     for k,v in pairs(customs) do
@@ -583,7 +730,13 @@ function OpenCustomMenu(veh, name)
                     RageUI.Button("Colours", nil, {RightLabel = ">"}, true, {}, colours);
                     RageUI.Button("Tint Level", nil, {RightLabel = ">"}, true, {}, tintLevel); --CUSTOM
                     RageUI.Button("Livery", nil, {RightLabel = ">"}, true, {}, livery);
-                    RageUI.Button("Extra mods", nil, {RightLabel = ">"}, true, {}, extra);
+                    RageUI.Button("Lights", nil, {RightLabel = ">"}, true, {}, light);
+                    RageUI.Button("Extra Mods/Turbo Tuning", nil, {RightLabel = ">"}, true, {}, extra);
+                end)
+
+                RageUI.IsVisible(light, function()
+                    RageUI.Button("Neon", nil, {RightLabel = ">"}, true, {}, lightsub1);
+                    RageUI.Button("Xenon", nil, {RightLabel = ">"}, true, {}, lightsub2);
                 end)
 
                 RageUI.IsVisible(wheelsType, function()
@@ -600,13 +753,18 @@ function OpenCustomMenu(veh, name)
 
                 RageUI.IsVisible(wheelsTypeSub, function()
                     for i = 1,GetNumVehicleMods(veh, 23) do
-                        RageUI.Button(selectedWheelLabel.." #"..i, nil, {RightLabel = ">"}, true, {
+                        RageUI.Button(selectedWheelLabel.." #"..i, nil, {RightLabel = "~g~$2000"}, true, {
                             onSelected = function()
-                                SetVehicleCustom(veh, 23, i, true)
-                                local props = GetVehProps(veh)
-                                p:SetCarProps(name, props)
-                                loadedProps = GetVehProps(veh)
-                                PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                if p:HaveEnoughMoney(miscPrice) then
+                                    p:Pay(miscPrice)
+                                    SetVehicleCustom(veh, 23, i, true)
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else
+                                    ShowNotification("Not enough money!")
+                                end
                             end,
                             onActive = function()
                                 SetVehicleCustom(veh, 23, i, false)
@@ -638,7 +796,7 @@ function OpenCustomMenu(veh, name)
                     for i = 1,9 do
                         if DoesExtraExist(p:currentVeh(), i) then
                             if IsVehicleExtraTurnedOn(p:currentVeh(), i) then
-                                RageUI.Button('Turn Extra #'..i..' - ~r~off', nil, {RightLabel = "~g~FREE"}, true, {
+                                RageUI.Button('Turn Extra #'..i..' - ~r~off', nil, {RightLabel = "~g~$2000"}, true, {
                                     onSelected = function()
                                         SetVehicleExtra(veh, i, true)
                                         local props = GetVehProps(veh)
@@ -651,7 +809,7 @@ function OpenCustomMenu(veh, name)
                                     end
                                 }); 
                             else
-                                RageUI.Button('Turn Extra #'..i..' ~g~on', nil, {RightLabel = "~g~FREE"}, true, {
+                                RageUI.Button('Turn Extra #'..i..' ~g~on', nil, {RightLabel = "~g~$2000"}, true, {
                                     onSelected = function()
                                         SetVehicleExtra(veh, i, false)
                                         local props = GetVehProps(veh)
@@ -669,26 +827,19 @@ function OpenCustomMenu(veh, name)
                 end)
 
                 RageUI.IsVisible(tintLevel, function()
-                    RageUI.Button("Tint #0", nil, {}, true, {
-                        onSelected = function()
-                            SetVehProps(veh, {windowTint = 60})
-                            local props = GetVehProps(veh)
-                            p:SetCarProps(name, props)
-                            loadedProps = GetVehProps(veh)
-                            PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
-                        end,
-                        onActive = function()
-                            SetVehProps(veh, {windowTint = 60})
-                        end
-                    });
-                    for i = 0, 4 do
-                        RageUI.Button("Tint #"..i + 1, "Apply Tint to your windows!", {}, true, {
+                    for i = 0, 3 do
+                        RageUI.Button("Tint #"..i + 1, "Apply Tint to your windows!", {RightLabel = "~g~$500"}, true, {
                             onSelected = function()
-                                SetVehProps(veh, {windowTint = i})
-                                local props = GetVehProps(veh)
-                                p:SetCarProps(name, props)
-                                loadedProps = GetVehProps(veh)
-                                PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                if p:HaveEnoughMoney(tintPrice) then 
+                                    p:Pay(tintPrice)
+                                    SetVehProps(veh, {windowTint = i})
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else 
+                                    ShowNotification("Not enough money!")
+                                end
                             end,
                             onActive = function()
                                 SetVehProps(veh, {windowTint = i})
@@ -696,7 +847,6 @@ function OpenCustomMenu(veh, name)
                         });
                     end
                 end)
-
 
                 RageUI.IsVisible(livery, function()
                     RageUI.Button("Livery #0", nil, {}, true, {
@@ -712,19 +862,465 @@ function OpenCustomMenu(veh, name)
                         end
                     });
                     for i = 0, 20 do
-                        RageUI.Button("Livery #"..i + 1, "Some livery's do not exist on vehicles", {}, true, {
+                        RageUI.Button("Livery #"..i + 1, "Some livery's do not exist on vehicles", {RightLabel = "~g~$750"}, true, {
                             onSelected = function()
-                                SetVehProps(veh, {modLivery = i})
-                                local props = GetVehProps(veh)
-                                p:SetCarProps(name, props)
-                                loadedProps = GetVehProps(veh)
-                                PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                if p:HaveEnoughMoney(wrapPrice) then 
+                                    p:Pay(wrapPrice)
+                                    SetVehProps(veh, {modLivery = i})
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else 
+                                    ShowNotification("Not enough money!")
+                                end
                             end,
                             onActive = function()
                                 SetVehProps(veh, {modLivery = i})
                             end
                         });
                     end
+                end)
+
+
+                RageUI.IsVisible(lightsub1, function()
+                    RageUI.Button("None", nil, { RightLabel = "~g~FREE" }, true, {
+                        onSelected = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if neonEnabled then
+                           SetVehicleNeonLightEnabled(veh, 0, false)
+                           SetVehicleNeonLightEnabled(veh, 1, false)
+                           SetVehicleNeonLightEnabled(veh, 2, false)
+                           SetVehicleNeonLightEnabled(veh, 3, false)
+                        end 
+                            SetVehicleNeonLightsColour(veh, 0, 0, 0)
+                            ShowNotification("Neon ~r~Removed~s~!", 1000)
+                            local props = GetVehProps(veh)
+                            p:SetCarProps(name, props)
+                            loadedProps = GetVehProps(veh)
+                            PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                        end,
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if neonEnabled then
+                           SetVehicleNeonLightEnabled(veh, 0, false)
+                           SetVehicleNeonLightEnabled(veh, 1, false)
+                           SetVehicleNeonLightEnabled(veh, 2, false)
+                           SetVehicleNeonLightEnabled(veh, 3, false)
+                        end
+                           SetVehicleNeonLightsColour(veh, 0, 0, 0)
+                        end
+                    })
+                    RageUI.Button("White", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                           SetVehicleNeonLightEnabled(veh, 0, true)
+                           SetVehicleNeonLightEnabled(veh, 1, true)
+                           SetVehicleNeonLightEnabled(veh, 2, true)
+                           SetVehicleNeonLightEnabled(veh, 3, true)
+                        end if p:HaveEnoughMoney(miscPrice) then 
+                                SetVehicleNeonLightsColour(veh, 255, 255, 255)
+                                p:Pay(miscPrice) 
+                                local props = GetVehProps(veh)
+                                p:SetCarProps(name, props)
+                                loadedProps = GetVehProps(veh)
+                                PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                           else 
+                                ShowNotification("Not enough money")
+                           end
+                        end,
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                           SetVehicleNeonLightEnabled(veh, 0, true)
+                           SetVehicleNeonLightEnabled(veh, 1, true)
+                           SetVehicleNeonLightEnabled(veh, 2, true)
+                           SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                           SetVehicleNeonLightsColour(veh, 255, 255, 255)
+                        end
+                    })
+                    RageUI.Button("Blue", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end if p:HaveEnoughMoney(miscPrice) then 
+                                p:Pay(miscPrice)
+                                SetVehicleNeonLightsColour(veh, 0, 0, 255)
+                                local props = GetVehProps(veh)
+                                p:SetCarProps(name, props)
+                                loadedProps = GetVehProps(veh)
+                                PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                            else
+                                ShowNotification("Not enough money")
+                            end 
+                            
+                        end,
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                            SetVehicleNeonLightsColour(veh, 0, 0, 255)
+                        end
+                    })
+                        
+                    RageUI.Button("Electric Blue", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                            local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                            if not neonEnabled then
+                                SetVehicleNeonLightEnabled(veh, 0, true)
+                                SetVehicleNeonLightEnabled(veh, 1, true)
+                                SetVehicleNeonLightEnabled(veh, 2, true)
+                                SetVehicleNeonLightEnabled(veh, 3, true)
+                            end if p:HaveEnoughMoney(miscPrice) then 
+                                    p:Pay(miscPrice)
+                                    SetVehicleNeonLightsColour(veh, 0, 150, 255)
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else
+                                    ShowNotification("Not enough money")
+                                end 
+                                
+                            end,
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                            SetVehicleNeonLightsColour(veh, 0, 150, 255)
+                        end
+                    })
+                    RageUI.Button("Mint Green", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                            local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                            if not neonEnabled then
+                                SetVehicleNeonLightEnabled(veh, 0, true)
+                                SetVehicleNeonLightEnabled(veh, 1, true)
+                                SetVehicleNeonLightEnabled(veh, 2, true)
+                                SetVehicleNeonLightEnabled(veh, 3, true)
+                            end if p:HaveEnoughMoney(miscPrice) then 
+                                    p:Pay(miscPrice)
+                                    SetVehicleNeonLightsColour(veh, 152, 255, 255)
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else
+                                    ShowNotification("Not enough money")
+                                end 
+                                
+                            end, 
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                            SetVehicleNeonLightsColour(veh, 152, 255, 152)
+                        end
+                    })			
+                                
+                    RageUI.Button("Lime Green", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                            local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                            if not neonEnabled then
+                                SetVehicleNeonLightEnabled(veh, 0, true)
+                                SetVehicleNeonLightEnabled(veh, 1, true)
+                                SetVehicleNeonLightEnabled(veh, 2, true)
+                                SetVehicleNeonLightEnabled(veh, 3, true)
+                            end if p:HaveEnoughMoney(miscPrice) then 
+                                    p:Pay(miscPrice)
+                                    SetVehicleNeonLightsColour(veh, 120, 210, 27)
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else
+                                    ShowNotification("Not enough money")
+                                end 
+                                
+                            end, 
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                            SetVehicleNeonLightsColour(veh, 120, 210, 27)
+                        end
+                    })			
+                                
+                                    
+                    RageUI.Button("Yellow", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                            local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                            if not neonEnabled then
+                                SetVehicleNeonLightEnabled(veh, 0, true)
+                                SetVehicleNeonLightEnabled(veh, 1, true)
+                                SetVehicleNeonLightEnabled(veh, 2, true)
+                                SetVehicleNeonLightEnabled(veh, 3, true)
+                            end if p:HaveEnoughMoney(miscPrice) then 
+                                    p:Pay(miscPrice)
+                                    SetVehicleNeonLightsColour(veh, 255, 255, 0)
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else
+                                    ShowNotification("Not enough money")
+                                end 
+                                
+                            end, 
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                            SetVehicleNeonLightsColour(veh, 255, 255, 0)
+                        end
+                    })			
+                                
+                                    
+                    RageUI.Button("Golden Shower", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                            local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                            if not neonEnabled then
+                                SetVehicleNeonLightEnabled(veh, 0, true)
+                                SetVehicleNeonLightEnabled(veh, 1, true)
+                                SetVehicleNeonLightEnabled(veh, 2, true)
+                                SetVehicleNeonLightEnabled(veh, 3, true)
+                            end if p:HaveEnoughMoney(miscPrice) then 
+                                    p:Pay(miscPrice)
+                                    SetVehicleNeonLightsColour(veh, 218, 165, 32)
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else
+                                    ShowNotification("Not enough money")
+                                end 
+                                
+                            end, 
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                            SetVehicleNeonLightsColour(veh, 218, 165, 32)
+                        end
+                    })			
+                                
+                                    
+                    RageUI.Button("Orange", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                            local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                            if not neonEnabled then
+                                SetVehicleNeonLightEnabled(veh, 0, true)
+                                SetVehicleNeonLightEnabled(veh, 1, true)
+                                SetVehicleNeonLightEnabled(veh, 2, true)
+                                SetVehicleNeonLightEnabled(veh, 3, true)
+                            end if p:HaveEnoughMoney(miscPrice) then 
+                                    p:Pay(miscPrice)
+                                    SetVehicleNeonLightsColour(veh, 255, 117, 24)
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else
+                                    ShowNotification("Not enough money")
+                                end 
+                                
+                            end, 
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                            SetVehicleNeonLightsColour(veh, 255, 117, 24)
+                        end
+                    })			
+                                
+                                    
+                    RageUI.Button("Red", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                            local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                            if not neonEnabled then
+                                SetVehicleNeonLightEnabled(veh, 0, true)
+                                SetVehicleNeonLightEnabled(veh, 1, true)
+                                SetVehicleNeonLightEnabled(veh, 2, true)
+                                SetVehicleNeonLightEnabled(veh, 3, true)
+                            end if p:HaveEnoughMoney(miscPrice) then 
+                                    p:Pay(miscPrice)
+                                    SetVehicleNeonLightsColour(veh, 255, 0, 0)
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else
+                                    ShowNotification("Not enough money")
+                                end 
+                                
+                            end, 
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                            SetVehicleNeonLightsColour(veh, 255, 0, 0)
+                        end
+                    })			
+                                
+                                    
+                    RageUI.Button("Hot Pink", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                            local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                            if not neonEnabled then
+                                SetVehicleNeonLightEnabled(veh, 0, true)
+                                SetVehicleNeonLightEnabled(veh, 1, true)
+                                SetVehicleNeonLightEnabled(veh, 2, true)
+                                SetVehicleNeonLightEnabled(veh, 3, true)
+                            end if p:HaveEnoughMoney(miscPrice) then 
+                                    p:Pay(miscPrice)
+                                    SetVehicleNeonLightsColour(veh, 255, 105, 180)
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else
+                                    ShowNotification("Not enough money")
+                                end 
+                                
+                            end, 
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                            SetVehicleNeonLightsColour(veh, 255, 105, 180)
+                        end
+                    })			
+                                
+                                    
+                    RageUI.Button("Pony Pink", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                            local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                            if not neonEnabled then
+                                SetVehicleNeonLightEnabled(veh, 0, true)
+                                SetVehicleNeonLightEnabled(veh, 1, true)
+                                SetVehicleNeonLightEnabled(veh, 2, true)
+                                SetVehicleNeonLightEnabled(veh, 3, true)
+                            end if p:HaveEnoughMoney(miscPrice) then 
+                                    p:Pay(miscPrice)
+                                    SetVehicleNeonLightsColour(veh, 255, 20, 148)
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else
+                                    ShowNotification("Not enough money")
+                                end 
+                                
+                            end, 
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                            SetVehicleNeonLightsColour(veh, 255, 20, 148)
+                        end
+                    })		
+                        
+                    RageUI.Button("Purple", nil, { RightLabel = "~g~$2000" }, true, {
+                        onSelected = function()
+                            local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                            if not neonEnabled then
+                                SetVehicleNeonLightEnabled(veh, 0, true)
+                                SetVehicleNeonLightEnabled(veh, 1, true)
+                                SetVehicleNeonLightEnabled(veh, 2, true)
+                                SetVehicleNeonLightEnabled(veh, 3, true)
+                            end if p:HaveEnoughMoney(miscPrice) then 
+                                    p:Pay(miscPrice)
+                                    SetVehicleNeonLightsColour(veh, 25, 0, 139)
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else
+                                    ShowNotification("Not enough money")
+                                end 
+                                
+                            end, 
+                        onActive = function()
+                        local neonEnabled = IsVehicleNeonLightEnabled(vevh, 0)
+                        if not neonEnabled then
+                            SetVehicleNeonLightEnabled(veh, 0, true)
+                            SetVehicleNeonLightEnabled(veh, 1, true)
+                            SetVehicleNeonLightEnabled(veh, 2, true)
+                            SetVehicleNeonLightEnabled(veh, 3, true)
+                        end
+                            SetVehicleNeonLightsColour(veh, 25, 0, 139)
+                        end
+                    })
+                end)
+                
+                RageUI.IsVisible(lightsub2, function()
+                    for i = 0, 13 do
+                        RageUI.Button("Xenon colour #"..i + 1, "Apply colour to your headlights!", {RightLabel = "~g~$2000"}, true, {
+                            onSelected = function()
+                                if p:HaveEnoughMoney(miscPrice) then
+                                    p:Pay(miscPrice)
+                                    SetVehProps(veh, {xenonColor = i})
+                                    local props = GetVehProps(veh)
+                                    p:SetCarProps(name, props)
+                                    loadedProps = GetVehProps(veh)
+                                    PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
+                                else 
+                                    ShowNotification("Not enough money!")
+                                end
+                            end,
+                            onActive = function()
+                                SetVehicleLights(veh, 2) -- turn on the headlights
+                                ToggleVehicleMod(veh,  22, true)
+                                SetVehProps(veh, {xenonColor = i})
+                            end
+                        });
+                    end			
                 end)
 
                 RageUI.IsVisible(colours, function()
@@ -783,7 +1379,7 @@ function OpenCustomMenu(veh, name)
                 end)
                 RageUI.IsVisible(sub, function()
                     for k,v in pairs(customs[selectedMod].customs) do
-                        RageUI.Button(v.label, nil, {RightLabel = "[x~b~"..v.max.."~s~] >"}, true, {
+                        RageUI.Button(v.label, "Some mods may not exist on some vehicles!", {RightLabel = "[x~b~"..v.max.."~s~] >"}, true, {
                             onSelected = function()
                                 selectedCustom = k
                                 if customs[selectedMod].extraAction ~= nil then
