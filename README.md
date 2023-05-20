@@ -12,7 +12,7 @@ Changes made:
  Better and easier to track ui.
  Custom pay exports for use in esx scripts.
  Less chat spam from Drift Trials.
- Full vehicle customization in garage. (Added tint, neon, xenon, and more missing cosmetic items. 
+ Full vehicle customization in garage. (Added tint, neon, xenon, and more missing cosmetic items.) 
 
 ALL of these changes are tested are on my custom server with the "lobby" completely removed. So some things like controller support might not work correctly or at all within the lobby!!!
 
