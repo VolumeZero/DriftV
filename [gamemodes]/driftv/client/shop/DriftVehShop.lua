@@ -124,6 +124,7 @@ function OpenVehShopMenu(GoBackToLobby)
                 DisableControlAction(0,140,true)
                 RageUI.IsVisible(main, function()
 		            RageUI.Button("Money: ~g~$"..GroupDigits(tostring(p:GetMoney())) .. "", nil, {}, true, {});
+                    RageUI.Button("Level: (~b~"..p:getLevel().. "~s~)", nil, {}, true, {});
                     RageUI.Button("Sell", nil, {RightLabel = ">"}, true, {}, sell);
                     for k,v in pairs(vehs) do
                         RageUI.Button(v.label, nil, {RightLabel = ">"}, p:getLevel() >= v.level, {
@@ -135,6 +136,7 @@ function OpenVehShopMenu(GoBackToLobby)
                 end)
 
                 RageUI.IsVisible(sub, function()
+                    RageUI.Button("Money: ~g~$"..GroupDigits(tostring(p:GetMoney())) .. "", nil, {}, true, {});
                     for k,v in pairs(vehs[selectedSub].vehs) do
                         RageUI.Button(v.maker.." "..v.label, nil, {RightLabel = "~g~"..GroupDigits(v.price).."~s~$"}, true, {
                             onSelected = function()
