@@ -1,6 +1,7 @@
 local vehs = {
     {
-        label = "Tier 1",
+        level = 0,
+        label = "Tier 1 (~b~lvl~s~0)",
         vehs = {
             {maker = "Honda", price = 50000, label = "Accord 86", model = "accord86"},
             {maker = "BMW", price = 65000,label = "e46",model = "bmwe"},
@@ -11,7 +12,8 @@ local vehs = {
         }
     },
     {
-        label = "Tier 2",
+        level = 10,
+        label = "Tier 2 (~b~lvl~s~10)",
         vehs = {
             {maker = "Honda", price = 85000, label = "2015 Civic Type R",model = "FK2"},
             {maker = "Honda", price = 85000, label = "Civic EK9 Rocket Bunny",model = "civicek9rb"},
@@ -25,7 +27,8 @@ local vehs = {
         }
     },
     {
-        label = "Tier 3",
+        level = 20,
+        label = "Tier 3 (~b~lvl~s~20)",
         vehs = {
             {maker = "Mazda", price = 115000, label = "rx7",model = "FD"}, -- icon
             {maker = "Nissan", price = 120000,label = "s15 Rocket Bunny",model = "s15rb"},
@@ -37,7 +40,8 @@ local vehs = {
         }
     },
     {
-        label = "Tier 4",
+        level = 30,
+        label = "Tier 4 (~b~lvl~s~30)",
         vehs = {
             {maker = "Nissan", price = 250000,label = "GTR35",model = "gtr"},
             {maker = "Nissan", price = 350000,label = "Skyline GT-R34 (BNR34) 2002",model = "skyline"},
@@ -47,7 +51,8 @@ local vehs = {
         }
     },
     {
-        label = "Tier 5",
+        level = 40,
+        label = "Tier 5 (~b~lvl~s~40)",
         vehs = {
             {maker = "Honda", price = 750000,label = "1992 NSX-R Rocket Bunny",model = "nsxtypr"},
             {maker = "Acura", price = 550000,label = "NSX LB",model = "filthynsx"},
@@ -68,9 +73,9 @@ local previewVeh = {
 local previewCoords = vector4(-44.621406555176, -1096.7896728516, 26.422359466553, 118.64887237549)
 local vehShopCoords = vector3(-43.162559509277, -1100.0212402344, 26.422359466553)
 local camPos = vector3(-45.922637939453, -1102.5314941406, 27.422361373901)
-local main = RageUI.CreateMenu("FxDrift", "~b~Drift vehicles shop")
-local sub =  RageUI.CreateSubMenu(main, "FxDrift", "~b~Drift vehicles shop")
-local sell =  RageUI.CreateSubMenu(main, "FxDrift", "~b~Drift vehicles shop")
+local main = RageUI.CreateMenu("DriftV", "~b~Drift vehicles shop")
+local sub =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift vehicles shop")
+local sell =  RageUI.CreateSubMenu(main, "DriftV", "~b~Drift vehicles shop")
 main.Closed = function()
     open = false
     RageUI.CloseAll()
@@ -121,7 +126,7 @@ function OpenVehShopMenu(GoBackToLobby)
 		            RageUI.Button("Money: ~g~$"..GroupDigits(tostring(p:GetMoney())) .. "", nil, {}, true, {});
                     RageUI.Button("Sell", nil, {RightLabel = ">"}, true, {}, sell);
                     for k,v in pairs(vehs) do
-                        RageUI.Button(v.label, nil, {RightLabel = ">"}, true, {
+                        RageUI.Button(v.label, nil, {RightLabel = ">"}, p:getLevel() >= v.level, {
                             onSelected = function()
                                 selectedSub = k
                             end,
