@@ -116,7 +116,7 @@ function OpenMainMenu()
         RageUI.Visible(main, true)
         StartLoopAnimation()
 
-            Citizen.CreateThread(function()
+        Citizen.CreateThread(function()
             while open do
             DisableControlAction(0,14,true)
             DisableControlAction(0,15,true)
