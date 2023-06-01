@@ -6,8 +6,6 @@ Citizen.CreateThread(function()
     
         for k,v in pairs(players) do
             v.level = GetPlayerLevelFromXp(v.exp)
-            v.money = p:GetMoney()
-            v.sessionDriftPoint = p:getSessionDrift()
         end
     
     end)
@@ -48,8 +46,8 @@ Citizen.CreateThread(function()
                     DrawRect(baseX, baseY + (0.032 * i), baseWidth, baseHeight, 0, 0, 0, 210)
                     DrawTexts(baseX - 0.14, baseY + (0.032 * i) - 0.013, players[i].level, true, 0.35, {255, 255, 255, 255}, 6, 0) -- level
                     DrawTexts(baseX + 0.10, baseY + (0.032 * i) - 0.013, GroupDigits(tostring(math.floor(players[i].driftPoint))), true, 0.35, {255, 255, 255, 255}, 6, 1) -- driftpoint
-                    DrawTexts(baseX - 0.09, baseY - 0.117, GroupDigits(tostring(players[i].money)), true, 0.35, {0, 255, 0, 255}, 2, 0) --Money
-                    DrawTexts(baseX + 0.10, baseY - 0.117, GroupDigits(math.floor(players[i].sessionDriftPoint)), true, 0.35, {255, 255, 255, 255}, 2, 0) --SDpoints
+                    DrawTexts(baseX - 0.09, baseY - 0.117, GroupDigits(tostring(p:GetMoney())), true, 0.35, {0, 255, 0, 255}, 2, 0) --Money
+                    DrawTexts(baseX + 0.10, baseY - 0.117, GroupDigits(math.floor(p:getSessionDrift())), true, 0.35, {255, 255, 255, 255}, 2, 0) --SDpoints
                     if PlayersCrew[players[i].servID] == "None" then
                         DrawTexts(baseX - 0.13, baseY + (0.032 * i) - 0.013, players[i].name, false, 0.35, {255, 255, 255, 255}, 6, 0) -- name
                     else
