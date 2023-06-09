@@ -198,17 +198,15 @@ function OpenVehShopMenu(GoBackToLobby)
                                 end
                             end,
                             onActive = function()
-                                local pVeh = p:GetCars()
-                                for k,v in pairs(pVeh) do
-                                    if previewVeh.model ~= v.model then
-                                        DeleteEntity(previewVeh.entity)
-                                        local veh = entity:CreateVehicleLocal(v.model, previewCoords.xyz, previewCoords.w)
-                                        SetVehProps(veh:getEntityId(), v.props)
-                                        SetVehicleOnGroundProperly(veh:getEntityId())
-                                        FreezeEntityPosition(veh:getEntityId(), true)
-                                        SetVehicleDirtLevel(veh:getEntityId(), 0.0)
-                                        previewVeh.entity = veh:getEntityId()
-                                    end
+                                if previewVeh.model ~= v.model then
+                                    DeleteEntity(previewVeh.entity)
+                                    local veh = entity:CreateVehicle(v.model, previewCoords.xyz, previewCoords.w)
+                                    SetVehProps(veh:getEntityId(), v.props)
+                                    SetVehicleOnGroundProperly(veh:getEntityId())
+                                    FreezeEntityPosition(veh:getEntityId(), true)
+                                    SetVehicleDirtLevel(veh:getEntityId(), 0.0)
+                                    previewVeh.entity = veh:getEntityId()
+                                    previewVeh.model = v.model
                                 end
                             end
                         }, sell);
