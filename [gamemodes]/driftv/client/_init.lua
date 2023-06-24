@@ -17,7 +17,7 @@ Citizen.CreateThread(function()
     loaded = true
 
     startCinematic()
-    Wait(50) --Wait to ensure player is created before reloading.
+    Wait(500) --Wait to ensure player is created before reloading.
     TriggerServerEvent("driftV:InitPlayer") --During testing i noticed that player data is not reloaded upon creation. This is a simple fix for that
 
     SetPlayerInvincible(GetPlayerIndex(), true) 
