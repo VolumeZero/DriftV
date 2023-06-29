@@ -18,7 +18,7 @@ function InitPlayer(source)
         gotData = false
     else
         MySQL.Async.fetchAll('SELECT * FROM players WHERE license = @license', { ['@license'] = tostring(license)..saison }, function(result)
-            print(json.encode(result))
+            --print(json.encode(result))
 
             data = result[1]
             gotData = true
@@ -64,7 +64,7 @@ function InitPlayer(source)
             },
             function(affectedRows)
                 dataCreated = true
-                print(affectedRows)
+                --print(affectedRows)
             end)
         else
             dataCreated = true
