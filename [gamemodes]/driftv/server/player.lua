@@ -322,4 +322,8 @@ exports('getPlayerMoney', function(source)
     return player[source].money
 end)
 
-
+RegisterServerEvent("SavePlayer") --Save player from client side scripts
+AddEventHandler("SavePlayer", function()
+player[source].needSave = true
+RefreshPlayerData(source)
+end)
