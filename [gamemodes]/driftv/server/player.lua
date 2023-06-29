@@ -18,7 +18,7 @@ function InitPlayer(source)
         gotData = false
     else
         MySQL.Async.fetchAll('SELECT * FROM players WHERE license = @license', { ['@license'] = tostring(license)..saison }, function(result)
-            --print(json.encode(result))
+            print(json.encode(result))
 
             data = result[1]
             gotData = true
@@ -64,7 +64,7 @@ function InitPlayer(source)
             },
             function(affectedRows)
                 dataCreated = true
-                --print(affectedRows)
+                print(affectedRows)
             end)
         else
             dataCreated = true
@@ -289,11 +289,13 @@ RegisterSecuredNetEvent(Events.busted, function(cops)
 end)
 
 RegisterSecuredNetEvent(Events.pay, function(price)
-    player[source].money = player[source].money - price
-    TriggerClientEvent("FeedM:showNotification", source, "Money: ~g~"..GroupDigits(player[source].money).."~s~$", 4000, "success")
-    TriggerClientEvent("FeedM:showNotification", source, "- ~r~"..GroupDigits(price).."~s~$", 2000, "success")
-    player[source].needSave = true
-    RefreshPlayerData(source)
+    if player[source].money > price then
+        player[source].money = player[source].money - price
+        TriggerClientEvent("FeedM:showNotification", source, "Money: ~g~"..GroupDigits(player[source].money).."~s~$", 4000, "success")
+        TriggerClientEvent("FeedM:showNotification", source, "- ~r~"..GroupDigits(price).."~s~$", 2000, "success")
+        player[source].needSave = true
+        RefreshPlayerData(source)
+    end
 end)
 
 --Custom exports
