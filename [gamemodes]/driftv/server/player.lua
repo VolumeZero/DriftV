@@ -269,7 +269,7 @@ end)
 
 RegisterSecuredNetEvent(Events.sellVeh, function(price, label, model)
     player[source].money = player[source].money + price
-    table.remove(player[source].cars, nil)
+    table.remove(player[source].cars, model)
     TriggerClientEvent("FeedM:showNotification", source, "Money: ~g~"..GroupDigits(player[source].money).."~s~$", 4000, "success")
     TriggerClientEvent("FeedM:showNotification", source, "+ ~g~"..GroupDigits(price).."~s~$", 2000, "success")
     TriggerClientEvent("FeedM:showNotification", source, "Vehicle ~r~sold~s~!", 5000, "success")

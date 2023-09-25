@@ -149,20 +149,23 @@ function OpenVehShopMenu(GoBackToLobby)
                         RageUI.Button(v.maker.." "..v.label, nil, {RightLabel = "~g~"..GroupDigits(v.price).."~s~$"}, true, {
                             onSelected = function()
                                 if v.price <= p:GetMoney() then
-                                    open = false
-                                    RageUI.CloseAll()
-                                    RageUI.Visible(main, false)
-                                    DeleteEntity(previewVeh.entity)
-                                    cam.render("SHOP", false, false, 0)
-                                    cam.delete("SHOP")
-                                    TriggerServerEvent(Events.buyVeh, v.price, v.maker.." "..v.label, v.model)
-                                    ShowHelpNotification("Your new vehicle has been added to your garage! To take it out, use F1 -> My vehicles !", true)
-
-                                    if backToLobby then
-                                        EnableLobby()
+                                    local playerCars = p:GetCars()
+                                    local missingCar = true
+                                    for _,j in pairs(playerCars) do
+                                        if j.model == v.model then
+                                            missingCar = false
+                                            break
+                                        end
+                                    end
+                                    if missingCar == true then
+                                        TriggerServerEvent(Events.buyVeh, v.price, v.maker.." "..v.label, v.model)
+                                        ShowHelpNotification("Your new vehicle has been added to your garage!", true)
+                                        DeleteEntity(previewVeh.entity)
+                                    else
+                                        ShowNotification("~r~ERROR~s~: You already own this vehicle!")
                                     end
                                 else
-                                    ShowNotification("Not enough money")
+                                    ShowNotification("~r~ERROR~s~: Not enough money!")
                                 end
                             end,
                             onActive = function()
@@ -191,7 +194,7 @@ function OpenVehShopMenu(GoBackToLobby)
                                 DeleteEntity(previewVeh.entity)
                                 cam.render("SHOP", false, false, 0)
                                 cam.delete("SHOP")
-                                TriggerServerEvent(Events.sellVeh, v.price, v.label, v.model)
+                                TriggerServerEvent(Events.sellVeh, v.price, v.label, k)
                                 ShowHelpNotification("Your vehicle has been sold!", true)
                                 if backToLobby then
                                     EnableLobby()
