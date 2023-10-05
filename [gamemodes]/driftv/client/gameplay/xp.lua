@@ -19,7 +19,7 @@ end
 
 function DisplayRankBar(oldxp, newxp, oldlevel, newlevel, take)
 	Citizen.CreateThread(function()
-		local XP_StartLimit_RankBar = math.floor(oldxp)
+		local XP_StartLimit_RankBar = math.floor(oldlevel)
 		local XP_EndLimit_RankBar = math.floor(GetCorrectExpForLevel(newlevel))
 		local playersPreviousXP = math.floor(oldxp)
 		local playersCurrentXP = math.floor(p:getExp())
