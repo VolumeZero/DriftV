@@ -169,9 +169,9 @@ function OpenMainMenu()
                         RageUI.Button("Create", "Do you want to be famous? Make yourself known as a leader? Create your own crew now!", {}, true, {
                             onSelected = function()
                                 local name = KeyboardInput("Crew full name", 20)
-                                if name ~= nil or name ~= "" then
+                                if name ~= nil and name ~= "" then
                                     local tag = KeyboardInput("Crew tag (4 char max)", 4)
-                                    if tag ~= nil or tag ~= "" then
+                                    if tag ~= nil and tag ~= "" then
                                         TriggerServerEvent("driftV:CreateCrew", tag, name)
                                     end
                                 end
